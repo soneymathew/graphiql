@@ -4,6 +4,8 @@ GraphiQL
 */ˈɡrafək(ə)l/* A graphical interactive in-browser GraphQL IDE. [Try the live demo](http://graphql.org/swapi-graphql).
 
 [![Build Status](https://travis-ci.org/graphql/graphiql.svg?branch=master)](https://travis-ci.org/graphql/graphiql)
+[![CDNJS](https://img.shields.io/cdnjs/v/graphiql.svg)](https://cdnjs.com/libraries/graphiql)
+[![npm](https://img.shields.io/npm/v/graphiql.svg)](https://www.npmjs.com/package/graphiql)
 
 [![](resources/graphiql.png)](http://graphql.org/swapi-graphql)
 
@@ -40,9 +42,9 @@ function graphQLFetcher(graphQLParams) {
 ReactDOM.render(<GraphiQL fetcher={graphQLFetcher} />, document.body);
 ```
 
-Build for the web with [webpack](http://webpack.github.io/) or [browserify](http://browserify.org/), or use the pre-bundled graphiql.js file. See the example in the git repository to see how to use the pre-bundled file.
+Build for the web with [webpack](https://webpack.js.org/) or [browserify](http://browserify.org/), or use the pre-bundled `graphiql.js` file. See the [example](./example) in the git repository to see how to use the pre-bundled file.
 
-Don't forget to include the CSS file on the page! If you're using npm or yarn, you can find it in `node_modules/graphiql/graphiql.css`, or you can download it from the [releases page](https://github.com/graphql/graphiql/releases).
+Don't forget to include the CSS file on the page! If you're using `npm` or `yarn`, you can find it in `node_modules/graphiql/graphiql.css`, or you can download it from the [releases page](https://github.com/graphql/graphiql/releases).
 
 For an example of setting up a GraphiQL, check out the [example](./example) in this repository which also includes a few useful features highlighting GraphiQL's API.
 
@@ -174,7 +176,7 @@ class CustomGraphiQL extends React.Component {
 
   render() {
     return (
-      <GraphiQL ref={c => { this.graphiql = c; }} ...this.state>
+      <GraphiQL ref={c => { this.graphiql = c; }} {...this.state}>
         <GraphiQL.Logo>
           Custom Logo
         </GraphiQL.Logo>
@@ -184,12 +186,12 @@ class CustomGraphiQL extends React.Component {
           <GraphiQL.Button
             onClick={this.handleClickPrettifyButton}
             label="Prettify"
-            title="Prettify Query"
+            title="Prettify Query (Shift-Ctrl-P)"
           />
 
           // Some other possible toolbar items
-          <GraphiQL.Menu title="File">
-            <GraphiQL.MenuItem title="Save" onClick={...}>
+          <GraphiQL.Menu label="File" title="File">
+            <GraphiQL.MenuItem label="Save" title="Save" onSelect={...}>
           </GraphiQL.Menu>
 
           <OtherReactComponent someProps="true" />
@@ -216,7 +218,7 @@ In order to theme the editor portions of the interface, you can supply a `editor
 
 // In your GraphiQL JSX
 <GraphiQL
-  editorTheme="solarized"
+  editorTheme="solarized light"
 />
 ```
 

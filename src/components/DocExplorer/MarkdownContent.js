@@ -6,14 +6,17 @@
  *  LICENSE file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
-import Marked from 'marked';
+import React from 'react';
+import PropTypes from 'prop-types';
+import MD from 'markdown-it';
+
+const md = new MD();
 
 export default class MarkdownContent extends React.Component {
   static propTypes = {
     markdown: PropTypes.string,
     className: PropTypes.string,
-  }
+  };
 
   shouldComponentUpdate(nextProps) {
     return this.props.markdown !== nextProps.markdown;
@@ -25,11 +28,10 @@ export default class MarkdownContent extends React.Component {
       return <div />;
     }
 
-    const html = Marked(markdown, { sanitize: true });
     return (
       <div
         className={this.props.className}
-        dangerouslySetInnerHTML={{ __html: html }}
+        dangerouslySetInnerHTML={{ __html: md.render(markdown) }}
       />
     );
   }
